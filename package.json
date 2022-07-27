@@ -1,0 +1,49 @@
+{
+  "name": "elite-product-group1-comp229003-sell-used-product-site",
+  "version": "1.0.0",
+  "description": "COMP229Sec003 Group Project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SVafadar69/EpicProject.git"
+  },
+  "keywords": [
+    "COMP229",
+    "EpicProject",
+    "GroupWork",
+    "Node.js",
+    "Express",
+    "Mongo",
+    "Passport.js"
+  ],
+  "author": "Abasibiangake James, Avalon Stanley, Abhishek, Kristi Goxhaj, Steven Vafadar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SVafadar69/EpicProject/issues"
+  },
+  "homepage": "https://github.com/SVafadar69/EpicProject#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.1.1",
+    "body-parser": "^1.20.0",
+    "bootstrap": "^5.1.3",
+    "compression": "^1.7.4",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
+    "debug": "^4.3.4",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "http-errors": "^2.0.0",
+    "jquery": "^3.6.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.4.7",
+    "morgan": "^1.10.0",
+    "node-sass": "^7.0.1",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0"
+  }
+}

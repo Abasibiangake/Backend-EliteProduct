@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+  <link rel='stylesheet' href='/@fortawesome/fontawesome-free/css/all.min.css' />
+  <script src="https://kit.fontawesome.com/b2dd3e5cd5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/stylesheets/header.css">
+  <link rel="stylesheet" href="/stylesheets/footer.css">
+
+</head>
+
+<body>
+  <div class="header">
+    <div class="container-fluid">
+
+      <!-- logo -->
+      <div class="logo-header">
+        <a class="navbar-brand" href="/">
+          <img src="/images/logo.png" alt="logo" style="width:40px;" class="d-inline-block align-top" alt="">
+        </a></div>
+
+      <!-- searchbar -->
+      <div class="container-search">
+        <form action="">
+          <input class="different" type="text" placeholder="Search for anything..." name="searchbar">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+
+      <!-- post ad button -->
+      <div class="topnav-postAd">
+        <a href="/products/add"></i>Post Ad</a>
+      </div>
+
+      <!-- TEMPORARY sign-in button -->
+      <div class="topnav-signIn">
+        <% if (typeof userName == 'string' && userName) { %>
+        <a href="/users/signout" onclick="return confirm('Are you sure?')">Sign-Out</a>
+        <% } else { %>
+        <a href="/users/signin">SIGN IN</a>
+        <% } %>
+
+      </div>
+
+
+    </div>
+
+    <!-- quick links -->
+    <div class="navLinks" id="navbarNavDropdown">
+      <a class="nav-link" href="/categories/clothing">Clothing<span class="sr-only">(current)</span></a>
+      <a class="nav-link" href="/categories/furniture">Furniture</a>
+      <a class="nav-link" href="/categories/electronics">Electronics</a>
+      <!-- outdoor isnt in your routes yet -->
+
+      <a class="nav-link" href="/categories/outdoor">Outdoor</a>
+      <a class="nav-link" href="/categories/vehicle">Vehicles</a>
+    </div>
+    <hr style=" width: 95%; border: 8px solid #373373; border-radius: 5px; margin-top: 1px;">
+  </div>
+
+
+
+
+  <!-- <nav class="navbar navbar-dark bg-dark">
+    <div class="topnav-container">
+      <a class="navbar-brand" href="#">
+        <img src="/images/logo.jpg" alt="logo" style="width:40px;">
+      </a>
+      <a class="navbar-brand">Elite Product</a>
+      <div class="topnav-search">
+        <form action="">
+          <input type="text" placeholder="Search for anything..." name="searchbar">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
+      
+    </div> -->
+
+  <!-- <div class="topnav-search">
+      <form action="">
+      <input type="text" placeholder="Search for anything..." name="searchbar">
+      <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+      <h4><span><a href="/users/register">Register</a></span> or </h4> 
+      <% if (typeof userName == 'string' && userName) { %>
+        <a href="/users/signout" onclick="return confirm('Are you sure?')">Sign-Out</a>
+      <% } else { %>
+        <a href="/users/signin">Sign In</a>
+      <% } %> 
+      <div class="topnav-postAd">
+        <a href="/users/signin" class="btn btn-sm btn-info" name="postAd"></i>Post ad</a>
+      </div>
+    </div> -->
+
+  <!-- </nav> -->
+
+  <!-- Main Nav bar    -->
+  <!-- <div class="topnav">
+    <div class="topnav-container"> -->
+
+  <!-- logo -->
+  <!-- <div class="topnav-logo">
+        <a class="navbar-brand" href="#">
+            <img src="/images/logo.jpg" alt="logo" style="width:40px;">
+        </a>
+      </div> -->
+
+  <!-- search (UPDATE FORM ACTION)-->
+  <!-- <div class="topnav-search">
+        <form action="">
+        <input type="text" placeholder="Search for anything..." name="searchbar">
+        <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div> -->
+
+  <!-- register link -->
+  <!-- <div class="topnav-register">
+        <h4><span><a href="/users/register">Register</a></span> or </h4> 
+      </div> -->
+
+  <!-- signin link -->
+  <!-- <div class="topnav-signIn">
+        <% if (typeof userName == 'string' && userName) { %>
+          <a href="/users/signout" onclick="return confirm('Are you sure?')">Sign-Out</a>
+        <% } else { %>
+          <a href="/users/signin">Sign In</a>
+        <% } %>            
+      </div> -->
+
+  <!-- post ad button -->
+  <!-- <div class="topnav-postAd">
+        <a href="/users/signin" class="btn btn-sm btn-info" name="postAd"></i>Post ad</a>
+      </div>
+
+    </div>
+  </div> -->
+
+  <!-- <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <h4><span><a href="/users/register">Register</a></span> or </h4>
+          </li>
+          <li class="nav-item">
+            <% if (typeof userName == 'string' && userName) { %>
+              <a href="/users/signout" onclick="return confirm('Are you sure?')">Sign-Out</a>
+            <% } else { %>
+              <a href="/users/signin">Sign In</a>
+            <% } %>        
+          </li>
+        </ul>
+      </div>  -->
+
+  <br>
+  <br>
+  <br>

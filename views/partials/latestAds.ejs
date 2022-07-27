@@ -1,0 +1,20 @@
+<% include ../partials/header.ejs %>
+<% include ../partials/banner.ejs %>
+
+<h2 class="heading-latestAds">Latest ads</h2>
+
+<% for(let i = 0; i < latestAdsList.length; i++){ %>                
+    <div class="latest-ads-container">
+        <div class="latest-ads-ad">
+            <div class="latest-ads-image">
+                <div><img src="<%= latestAdsList[i].imageSrc %>" ></div>
+            </div>
+            <div class="latest-ads-text">
+                <h3 class="itemTitle"><%= latestAdsList[i].itemTitle %></h3>
+                <h2 class="category"><%= latestAdsList[i].category %></h2>
+                <h3 class="price">$ <%= latestAdsList[i].price %></h3> 
+            </div>
+        </div>
+    </div>
+<% } %>
+

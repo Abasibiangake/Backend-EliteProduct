@@ -1,0 +1,95 @@
+<%- include ('../partials/header'); -%>
+
+<div class="container-add">
+    <div class="row">
+
+        <div class="offset-md-3 col-md-3">
+            <h1><%= title %></h1>
+            <hr><br>
+            <form class="form" method="POST" validate>
+
+                <div class="form-group">
+                    <label>Enter Your Image URL:</label>
+                    <input type="text" name="image" value="<%= product.image %>" class="form-control" placeholder="https://image1"/>
+                </div>
+
+                <div class="form-group">
+
+                    <input type="hidden" name="id" value="<%= product._id %>">
+
+                    <label>Select Category:</label>
+                    <select name="category">
+                        <option disabled selected>--select--</option>
+                        <option <%- product.category == 0 ? "selected" : "" %> value="Clothing">Clothing</option>
+                        <option <%- product.category == 1 ? "selected" : "" %> value="Furniture">Furniture</option>
+                        <option <%- product.category == 2 ? "selected" : "" %> value="Electronics">Electronics</option>
+                        <option <%- product.category == 3 ? "selected" : "" %> value="Outdoor">Outdoor</option>
+                        <option <%- product.category == 4 ? "selected" : "" %> value="Vehicles">Vehicle</option>
+                        <option <%- product.category == 5 ? "selected" : "" %> value="Other">Other</option>
+                       </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Condition:</label>
+                    <select name="condition">
+                        <option disabled selected>--select--</option>
+                        <option <%- product.condition == 0 ? "selected" : "" %> value="New">New</option>
+                        <option <%- product.condition == 1 ? "selected" : "" %> value="Used: Like New">Used - Like New</option>
+                        <option <%- product.condition == 2 ? "selected" : "" %> value="Used: Good">Used - Good</option>
+                        <option <%- product.condition == 3 ? "selected" : "" %> value="Used: Fair">Used - Fair</option>
+                       </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Ad Title:</label>
+                    <input type="text" name="title" value="<%= product.title %>" class="form-control" placeholder="minimum 6 characters"/>
+                </div>
+
+                <div class="form-group">
+                    <label>Description:</label>
+                    <textarea name="description" value="<%= product.description %>" rows="10" cols="100"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <div class="div0">
+                    <div class="div1">
+                    <label>Price:</label></div>
+                    <div class="div2">
+                        <input type="number" name="price" value="<%= product.price %>" class="form-control" placeholder="$10000"/>
+                    <!-- <input type="radio" name="price" onclick="validate(this)" id="yes"<%- product.price == 0 ? "selected" : "" %> value="dollarAmount"><span style="font-size: 18px;"> $ </span><input type="number" name="priceNum" id="priceNum" value="<%= product.priceNum %>"/><br>
+                    <input type="radio" name="price" id="no"<%- product.price == 1 ? "selected" : "" %> value="Free"> Free<br>
+                    <input type="radio" name="price" id="no"<%- product.price == 2 ? "selected" : "" %> value="PleaseContact"> Please Contact<br>
+                    <input type="radio" name="price" id="no"<%- product.price == 3 ? "selected" : "" %> value="Swap/Trade"> Swap/Trade<br> -->
+                    </div>
+                </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="div0"><div class="div1">
+                    <label>Phone Number:</label>
+                    <p style="margin-top: 5px;">(optional)</p></div>
+                    <div class="div2">
+                        <input type="number" name="phoneNumber" value="<%= product.phoneNumber %>" class="form-control" placeholder="123 456 7890"/>
+                    </div></div></div>
+
+                <br>
+                
+                <div>
+                    <input class="btn btn-primary" type="submit" value="Post your ad" />
+                </div>
+                <!-- <button class="btn btn-primary" type="submit">
+                    <i class="fas fa-edit"></i> 
+                    Post your ad
+                </button>
+                
+                <a href="/products/list" class="btn btn-warning">
+                    <i class="fas fa-undo"></i> 
+                    Cancel
+                </a> -->
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include ('../partials/footer'); -%>
