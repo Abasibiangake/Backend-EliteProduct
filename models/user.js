@@ -9,15 +9,6 @@ let UserSchema = mongoose.Schema(
             type: String,
             match: [/.+\@.+\..+/, "Please fill a valid e-mail address"]
         },
-        // address:{
-        //     street: String,
-        //     city: String,
-        //     province: {
-        //         type:String,
-        //         enum: ['AB', 'BC', 'MB', 'NB', 'NL', 'NT', 'NS', 'NU', 'ON', 'PE', 'QC', 'SK', 'YT']
-        //     },
-        //     postal: String
-        // },
         username: {
             type: String,
             unique: true,

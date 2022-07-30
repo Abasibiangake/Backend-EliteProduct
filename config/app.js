@@ -1,22 +1,18 @@
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
-let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let compress = require('compression');
 let bodyParser = require('body-parser');
 let methodOverride = require('method-override');
-let session = require('express-session');
-let flash = require('connect-flash');
 let passport = require('passport');
-
+let cors = require('cors');
+let errorHandler = require('./error-handler');
 let app = express();
 
-app.use(session({
-  saveUninitialized: true,
-  resave: true,
-  secret: "sessionSecret"
-}));
+// Enable cors
+app.use(cors());
+app.options('*', cors()); // any URL can access --> not recommended in real-world
 
 
 let indexRouter = require('../routes/index');
@@ -30,14 +26,12 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, '../node_modules')));
 
-// Sets up passport
-app.use(flash());
 app.use(passport.initialize());
-app.use(passport.session());
+
 
 
 app.use('/', indexRouter);
@@ -49,18 +43,7 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
-});
-
-
+app.use(errorHandler);
 
 
 module.exports = app;

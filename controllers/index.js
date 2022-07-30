@@ -1,4 +1,3 @@
-let mongoose = require('mongoose');
 let Products=require('../models/product')
 
 exports.home = function (req, res, next) {
@@ -8,7 +7,6 @@ exports.home = function (req, res, next) {
         userName: req.user ? req.user.username : ''
     });
 };
-
 
 exports.clothingPage = async (req, res, next) =>{
     try {
@@ -23,7 +21,7 @@ exports.clothingPage = async (req, res, next) =>{
         console.log(`getting error ${e}`)
          res.end(e);
     }  
-}
+};
 
 exports.vehiclePage = async (req, res, next) =>{
     try {
@@ -38,7 +36,7 @@ exports.vehiclePage = async (req, res, next) =>{
         console.log(`getting error ${e}`)
          res.end(e);
     }
-}  
+};  
 
 exports.electronicsPage = async (req, res, next) =>{
     try {
@@ -53,7 +51,8 @@ exports.electronicsPage = async (req, res, next) =>{
         console.log(`getting error ${e}`)
          res.end(e);
     }
-}  
+};  
+
 exports.furniturePage = async (req, res, next) =>{
     try {
 
@@ -67,7 +66,8 @@ exports.furniturePage = async (req, res, next) =>{
         console.log(`getting error ${e}`)
          res.end(e);
     }
-}  
+};  
+
 exports.outdoorPage = async (req, res, next) =>{
     try {
 
@@ -81,4 +81,4 @@ exports.outdoorPage = async (req, res, next) =>{
         console.log(`getting error ${e}`)
          res.end(e);
     }
-} 
+}; 
