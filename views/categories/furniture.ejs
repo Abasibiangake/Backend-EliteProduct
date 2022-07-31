@@ -15,14 +15,13 @@
     <%- include ('../partials/header'); -%>
 
     <!-- <div>Clothing page</div> -->
-    <main class="container">
-        <div class="column">
-            <h1 style="margin-left: 3%; padding-bottom: 2%;"><%= title %></h1>
-            <br>
+    <div class="latestAds-container">
+        <h1 style="margin-left: 3%; padding-bottom: 2%;"><%= title %></h1>
+        <br>
+        <div class="row">
 
             <% for (let i=0;i<list.length;i++){%>
             <% if (list[i].category=='Furniture') { %>
-            <div class="row">
             <div class="column">
                 <div class="card">
                     <a class="img-container" href="#">
@@ -46,12 +45,11 @@
                     <!-- <img id="image" src="<%=`/images/clothing/${list[i].condition.image}`%>" /> -->
                 </div>
             </div>
-            </div>
             <% } %>
 
             <% } %>
         </div>
-    </main>
+    </div>
 
     <%- include ('../partials/footer'); -%>
 </body>
