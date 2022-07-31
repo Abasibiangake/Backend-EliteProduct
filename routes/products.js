@@ -4,14 +4,10 @@ var router = express.Router();
 let productController = require('../controllers/product');
 let authController = require('../controllers/auth');
 
-// Acting temporarily as home page------------------------------------
-router.get('/list', productController.usedProducts);
-
-
 //=====================ONLY REGISTERED USERS CAN ACCESS=============================
 
 // Create an ad
-router.post('/add', authController.requireAuth, authController.isAllowed, productController.processAddPage);
+router.post('/add', authController.requireAuth, productController.processAddPage);
 
 //Edit
 router.post('/edit/:id', authController.requireAuth, authController.isAllowed, productController.processEditPage);
@@ -21,6 +17,7 @@ router.get('/delete/:id', authController.requireAuth, authController.isAllowed, 
 
 //===================================================================================
 
-
+// Acting temporarily as home page------------------------------------
+router.get('/list', productController.usedProducts);
 
 module.exports = router;

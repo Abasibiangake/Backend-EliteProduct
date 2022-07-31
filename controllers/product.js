@@ -20,8 +20,8 @@ module.exports.usedProducts = async function(req, res, next) {
 
     try {
         let productList = await ProductModel.find().populate({
-            path: 'owner',
-            select: 'firstName lastName email username admin created'
+            path: 'products',
+            select: 'image title condition price'
         });
 
         res.status(200).json(productList);

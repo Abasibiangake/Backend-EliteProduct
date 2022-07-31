@@ -1,11 +1,11 @@
-
-let controllerIndex = require('../controllers/index');
-
 var express = require('express');
 var router = express.Router();
+let controllerIndex = require('../controllers/index');
 
 /* GET home page. */
 router.get('/', homePage);
+
+/* GET category pages */
 router.get('/categories/clothing', controllerIndex.clothingPage);
 router.get('/categories/vehicle', controllerIndex.vehiclePage); 
 router.get('/categories/electronics', controllerIndex.electronicsPage);

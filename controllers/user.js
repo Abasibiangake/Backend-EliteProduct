@@ -2,6 +2,8 @@
 
 let User = require('../models/user');
 let passport = require('passport');
+let jwt = require('jsonwebtoken');
+let config = require('../config/config');
 
 //ERROR MESSAGES
 function getErrorMessage(err) {
@@ -26,7 +28,6 @@ function getErrorMessage(err) {
 
   return message;
 };
-
 
 //REGISTER --> PROCESS
 module.exports.register = function(req, res, next) {
@@ -54,7 +55,6 @@ module.exports.register = function(req, res, next) {
       );
     });
 };
-
 
 //AUTHENTICATE
 module.exports.signin = function(req, res, next){
@@ -105,7 +105,7 @@ module.exports.signin = function(req, res, next){
             }
           );
         } catch (error) {
-          // return next(error);
+
           console.log(error);
           return res.status(400).json(
             { 
