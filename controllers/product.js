@@ -14,7 +14,6 @@ function getErrorMessage(err) {
     }
 };
 
-
 // Gets all products from the Database and renders the page to list them all.
 module.exports.usedProducts = async function(req, res, next) {  
 
@@ -24,7 +23,7 @@ module.exports.usedProducts = async function(req, res, next) {
             select: 'firstName lastName email username admin created'
         });
 
-        res.status(200).json(productList);
+        return res.status(200).json(productList);
         
     } catch (error) {
         return res.status(400).json(
@@ -49,7 +48,9 @@ module.exports.processAddPage = (req, res, next) => {
             title: req.body.title,
             description: req.body.description,
             price: req.body.price,
-            phoneNumber: req.body.phoneNumber
+            phoneNumber: req.body.phoneNumber,
+            owner: (req.body.owner == null || req.body.owner == "")? req.payload.id : req.body.owner
+
         });
 
         ProductModel.create(newItem, (err, item) =>{
@@ -95,7 +96,8 @@ module.exports.processEditPage = (req, res, next) => {
             title: req.body.title,
             description: req.body.description,
             price: req.body.price,
-            phoneNumber: req.body.phoneNumber
+            phoneNumber: req.body.phoneNumber,
+            owner: (req.body.owner == null || req.body.owner == "")? req.payload.id : req.body.owner
         });
 
         ProductModel.updateOne({_id: id}, updatedProduct, (err) => {

@@ -11,10 +11,10 @@ router.get('/list', productController.usedProducts);
 //=====================ONLY REGISTERED USERS CAN ACCESS=============================
 
 // Create an ad
-router.post('/add', authController.requireAuth, authController.isAllowed, productController.processAddPage);
+router.post('/add', authController.requireAuth, productController.processAddPage);
 
 //Edit
-router.post('/edit/:id', authController.requireAuth, authController.isAllowed, productController.processEditPage);
+router.put('/edit/:id', authController.requireAuth, authController.isAllowed, productController.processEditPage);
 
 // Delete
 router.get('/delete/:id', authController.requireAuth, authController.isAllowed, productController.performDelete);

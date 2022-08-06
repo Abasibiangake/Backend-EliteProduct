@@ -3,11 +3,17 @@
 let User = require('../models/user');
 let passport = require('passport');
 
+let jwt = require('jsonwebtoken');
+let config = require('../config/config');
+
 //ERROR MESSAGES
 function getErrorMessage(err) {
-  console.log("===> Erro: " + err);
+  console.log(err);
   let message = '';
 
+  if (err.message) {
+    message = err.message;
+  }
   if (err.code) {
     switch (err.code) {
       case 11000:
@@ -17,7 +23,8 @@ function getErrorMessage(err) {
       default:
         message = 'Something went wrong';
     }
-  } if (err.errors) {
+  } 
+  if (err.errors) {
     for (let errName in err.errors) {
         if (err.errors[errName].message) 
         message = err.errors[errName].message;
