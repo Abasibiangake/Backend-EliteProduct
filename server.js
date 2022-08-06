@@ -6,10 +6,7 @@
  var app = require('./config/app'); 
  var debug = require('debug')('GroupProject:server');
  var http = require('http');
- 
-//      <------------------------------------------------------------------------------------
-const configurePassport = require('./config/passport');
-//      <------------------------------------------------------------------------------------
+ var passportConfig = require('./config/local');
 
  /**
   * Get port from environment and store in Express.
@@ -29,12 +26,8 @@ const configurePassport = require('./config/passport');
   /**
    * Listen on provided port, on all network interfaces.
    */
-  
-//      <------------------------------------------------------------------------------------
-const passport = configurePassport();
-//      <------------------------------------------------------------------------------------
-  
 
+   let passport = passportConfig();
   
   server.listen(port);
   server.on('error', onError);

@@ -17,145 +17,125 @@ function getErrorMessage(err) {
       default:
         message = 'Something went wrong';
     }
-  } else {
-    for (var errName in err.errors) {
-      if (err.errors[errName].message) message = err.errors[errName].message;
+  } if (err.errors) {
+    for (let errName in err.errors) {
+        if (err.errors[errName].message) 
+        message = err.errors[errName].message;
     }
   }
 
   return message;
 };
 
-//SIGN-IN --> RENDER
-module.exports.renderSignin = function(req, res, next) {
-  if (!req.user) {
-    res.render('auth/signin', {
-      title: 'Sign-in',
-      messages: req.flash('error') || req.flash('info')
-    });
-  } else {
-    console.log(req.user);
-    return res.redirect('/');
-  }
-};
-
-//REGISTER PAGE --> RENDER
-module.exports.renderRegistrationPage = function(req, res, next) {
-  if (!req.user) {
-
-    // creates a empty new user object.
-    let newUser = User();
-
-    res.render('auth/register', {
-      title: 'Register',
-      messages: req.flash('error'),
-      user: newUser
-    });
-
-  } else {
-    return res.redirect('/');//if already signed in, redirects to root of application
-  }
-};
 
 //REGISTER --> PROCESS
 module.exports.register = function(req, res, next) {
-  if (!req.user && req.body.password === req.body.password_confirm) {
-    console.log(req.body);
 
     let user = new User(req.body);
     user.provider = 'local';
-    console.log(user);
 
     user.save((err) => {
       if (err) {
         let message = getErrorMessage(err);
 
-        req.flash('error', message);
-        return res.render('auth/register', {
-          title: 'Register',
-          messages: req.flash('error'),
-          user: user
-        });
+        return res.status(400).json(
+          {
+            success: false, 
+            message: message
+          }
+        );
       }
-      req.login(user, (err) => {
-        if (err) return next(err);
-        return res.redirect('/');
-      });
+
+      return res.json(
+        {
+          success: true, 
+          message: 'User created successfully!'
+        }
+      );
     });
-  } else {
-    return res.redirect('/');
-  }
 };
 
-//SIGN-OUT
-module.exports.signout = function(req, res, next) {
-  req.logout(req.user, err => {
-    if(err) return next(err);
-    res.redirect("/");
-  });
-};
 
 //AUTHENTICATE
 module.exports.signin = function(req, res, next){
-  passport.authenticate('local', {   
-    successRedirect: req.session.url || '/',
-    failureRedirect: '/users/signin',
-    failureFlash: true
-  })(req, res, next);
-  delete req.session.url;
-}
-
-//UPDATE/MODIFY PAGE --> RENDER
-module.exports.renderUpdatePage = (req, res, next) => {
+  passport.authenticate(
+    'login', 
+    async (err, user, info) => {
+      try {
+        if (err || !user) {
+          return res.status(400).json(
+              { 
+                success: false, 
+                message: err || info.message
+              }
+            );
+        }
     
-    let id = req.params.id; 
+        req.login(
+            user,
+            { session: false },
+            async (error) => {
+              if (error) {
+                return next(error);
+              }
   
-    User.findById(id, (err, contactToUpdate) => {
-        if(err)
-        {
-            console.log(err);
-            res.end(err);
+              // Generating the JWT token.
+              const payload = 
+                { 
+                  id: user._id, 
+                  email: user.email 
+                };
+              const token = jwt.sign(
+                { 
+                  payload: payload
+                }, 
+                config.SECRETKEY, 
+                { 
+                  algorithm: 'HS512', 
+                  expiresIn: "20min"
+                }
+              );
+      
+              return res.json(
+                { 
+                  success: true, 
+                  token: token 
+                }
+              );
+            }
+          );
+        } catch (error) {
+          // return next(error);
+          console.log(error);
+          return res.status(400).json(
+            { 
+              success: false, 
+              message: getErrorMessage(error)
+            });
         }
-        else
-        {
-            //show the update view
-            res.render('users/update', {
-              title: 'Update Contact Information',
-              heading: 'UPDATE',
-              contact: contactToUpdate
-          })
-        }
-    });
+      }
+    )(req, res, next);
   }
+
+ 
+exports.myprofile = async function(req, res, next){
+
+    try {
+      
+      let id = req.payload.id;
+      let me = await User.findById(id).select('firstName lastName email username admin created');
   
-//UPDATE/MODIFY OWN INFO
-module.exports.update = (req, res, next) => {
-    
-    let id = req.params.id
-
-    let updatedInfo = User({
-        _id: req.body.id,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        address: req.body.address,
-        city: req.body.city,
-        province: req.body.province,
-        postal: req.body.postal,
-        userName: req.body.userName,
-        password: req.body.password      
-    });
-
-    User.updateOne({_id: id}, updatedInfo, (err) => {
-        if(err)
-        {
-            console.log(err);
-            res.end(err);
-        }
-        else
-        {
-            res.redirect('/'); // ------------ REDIRECT SOMEWHERE ELSE???
-        }
-    });
-}
+      res.status(200).json(me)
+  
+    } catch (error) {
+      console.log(error);
+        return res.status(400).json(
+            { 
+                success: false, 
+                message: getErrorMessage(error)
+            }
+        );
+    }
+  
+  }
 
