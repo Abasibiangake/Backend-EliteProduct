@@ -44,7 +44,7 @@ exports.isAllowed = async function (req, res, next){
 
     try {
         let id = req.params.id
-        let productItem = await Product.findById(id).populate('owner');   
+        let productItem = await Product.findById(id);   //.populate('owner');   
         
         // If there is no item found.
         if(productItem == null){

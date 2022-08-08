@@ -1,5 +1,4 @@
 //Generic code taken from other COMP229 assignments
-
 let User = require('../models/user');
 let passport = require('passport');
 

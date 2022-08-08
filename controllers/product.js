@@ -19,11 +19,11 @@ function getErrorMessage(err) {
 module.exports.usedProducts = async function(req, res, next) {  
 
     try {
-        let productList = await ProductModel.find().populate({
-            path: 'owner',
-            select: 'firstName lastName email username admin created'
-        });
-
+        let productList = await ProductModel.find();
+        //.populate({
+        //     path: 'owner',
+        //     select: 'firstName lastName email username admin created'
+        // });
         res.status(200).json(productList);
         
     } catch (error) {

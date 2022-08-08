@@ -24,7 +24,7 @@ function errorHandlerMiddleware(error, request, response, next) {
 	}
 
 	const errorResponse = {
-		statusCode: getHttpStatusCode({ error, response }),
+		success: false,    //getHttpStatusCode({ error, response }),
 		message: undefined
 	};
 
@@ -42,7 +42,7 @@ function errorHandlerMiddleware(error, request, response, next) {
 	/**
 	 * Set the response status code.
 	 */
-	response.status(errorResponse.statusCode);
+	response.status(getHttpStatusCode({ error, response })); //errorResponse.statusCode);
 
 	/**
 	 * Send an appropriately formatted response.
