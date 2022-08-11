@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SVafadar69/EpicProject.git"
+    "url": "https://github.com/Abasibiangake/Backend-EliteProduct"
   },
   "keywords": [
     "COMP229",
@@ -23,9 +23,9 @@
   "author": "Abasibiangake James, Avalon Stanley, Abhishek, Kristi Goxhaj, Steven Vafadar",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/SVafadar69/EpicProject/issues"
+    "url": "https://github.com/Abasibiangake/Backend-EliteProduct/issues"
   },
-  "homepage": "https://github.com/SVafadar69/EpicProject#readme",
+  "homepage": "https://github.com/Abasibiangake/Backend-EliteProduct/blob/main/README.md",
   "dependencies": {
     "body-parser": "^1.19.0",
     "compression": "^1.7.4",

@@ -1,5 +1,3 @@
-# EpicProject
-Our Group Project Repo, where we'll be pushing and pulling our updated code from. 
+# backend Elite Product
 
-This is just a little reminder for what needs to be included at each stage of our project development. 
-
+ To Set up, run `npm install` and then `nodemon`. You should then see your backend server running at http://localhost:1000/

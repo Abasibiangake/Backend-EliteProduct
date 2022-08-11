@@ -10,11 +10,17 @@ let productModel = mongoose.Schema(
         title         :String,
         description   :String,
         price         :Number,
-        phoneNumber   :Number
+        phoneNumber   :Number,
+        
+        // Adds relationship with User
+        owner: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        }
 
     }, 
     {
-        collection: "products"
+        collection: "product"
     });
 
 module.exports = mongoose.model("products", productModel);

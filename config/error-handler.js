@@ -42,7 +42,7 @@ function errorHandlerMiddleware(error, request, response, next) {
 	/**
 	 * Set the response status code.
 	 */
-	response.status(getHttpStatusCode({ error, response })); //errorResponse.statusCode);
+	 response.status(getHttpStatusCode({ error, response })); //errorResponse.statusCode);
 
 	/**
 	 * Send an appropriately formatted response.

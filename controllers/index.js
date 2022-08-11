@@ -1,12 +1,11 @@
 let Products=require('../models/product')
 
 exports.home = function (req, res, next) {
-    // console.log('===> Original URL: ' + req.session.url);
-    // res.render('products/list', { 
-    //     title: 'Latest Ads',
-    //     userName: req.user ? req.user.username : ''
-    // });
-    res.redirect('products/list');
+    console.log('===> Original URL: ' + req.session.url);
+    res.render('products/list', { 
+        title: 'Latest Ads',
+        userName: req.user ? req.user.username : ''
+    });
 };
 
 exports.clothingPage = async (req, res, next) =>{
