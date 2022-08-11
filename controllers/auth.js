@@ -52,9 +52,9 @@ exports.isAllowed = async function (req, res, next){
         }
         else if(productItem.owner != null){ // If the item found has a owner.
 
-            if(productItem.owner.id != req.payload.id){ // If the owner differs.
+            if(productItem.owner._id != req.payload.id){ // If the owner differs.
                 
-                let currentUser = await UserModel.findOne({id: req.payload.id}, 'admin');
+                let currentUser = await UserModel.findOne({_id: req.payload.id}, 'admin');
 
                 if(currentUser.admin != true){ // If the user is not a Admin
                     

@@ -40,7 +40,6 @@ module.exports.register = function(req, res, next) {
 
     let user = new User(req.body);
     user.provider = 'local';
-    console.log(user);
 
     user.save((err) => {
       if (err) {
@@ -90,7 +89,7 @@ module.exports.signin = function(req, res, next){
               // Generating the JWT token.
               const payload = 
                 { 
-                  id: user.id, 
+                  id: user._id, 
                   email: user.email 
                 };
               const token = jwt.sign(

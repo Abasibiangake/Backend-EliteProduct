@@ -18,12 +18,12 @@ function getErrorMessage(err) {
 module.exports.usedProducts = async function(req, res, next) {  
 
     try {
-        let usedProducts = await ProductModel.find().populate({
+        let productList = await ProductModel.find().populate({
             path: 'owner',
             select: 'firstName lastName email username admin created'
         });
 
-        return res.status(200).json(usedProducts);
+        return res.status(200).json(productList);
         
     } catch (error) {
         return res.status(400).json(
@@ -41,7 +41,7 @@ module.exports.usedProducts = async function(req, res, next) {
 module.exports.processAddPage = (req, res, next) => {
     try {
         let newItem = ProductModel({
-            id: req.body.id,
+            _id: req.body.id,
             image: req.body.image,
             category: req.body.category,
             condition: req.body.condition,
@@ -89,7 +89,7 @@ module.exports.processEditPage = (req, res, next) => {
         let id = req.params.id
 
         let updatedProduct = ProductModel({
-            id: req.body.id,
+            _id: req.body.id,
             image: req.body.image,
             category: req.body.category,
             condition: req.body.condition,
@@ -100,7 +100,7 @@ module.exports.processEditPage = (req, res, next) => {
             owner: (req.body.owner == null || req.body.owner == "")? req.payload.id : req.body.owner
         });
 
-        ProductModel.updateOne({id: id}, updatedProduct, (err) => {
+        ProductModel.updateOne({_id: id}, updatedProduct, (err) => {
             if(err)
             {
                 console.log(err);
@@ -137,7 +137,7 @@ module.exports.performDelete = (req, res, next) => {
     try {
         let id = req.params.id;
 
-        ProductModel.remove({id: id}, (err) => {
+        ProductModel.remove({_id: id}, (err) => {
             if(err)
             {
                 console.log(err);
