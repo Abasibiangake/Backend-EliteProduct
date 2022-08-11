@@ -88,7 +88,7 @@ module.exports.processEditPage = (req, res, next) => {
     try {
         let id = req.params.id
 
-        let updatedProduct = ProductModel({
+        let updatedProduct = ({
             _id: req.body.id,
             image: req.body.image,
             category: req.body.category,
